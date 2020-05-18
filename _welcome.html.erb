@@ -1,0 +1,31 @@
+<%= t('dashboard.welcome_html', logo_img_tag: Configuration.logo_img? ? logo_image_tag(Configuration.logo_img) : "") %>
+
+<iframe id="iframe" frameborder="no" src="https://jiankong.nnmhub.work:5601/app/kibana?security_tenant=private#/dashboard/e29d2cc0-85f3-11ea-a038-9f3ec9e42d78?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))" height="920" style="pointer-events: none;"></iframe>
+
+
+<script>
+    var iFrame = document.getElementById('iframe')
+    var flag = 0;
+    var win = window;
+    iFrame.style.width = window.getComputedStyle(document.getElementsByClassName('container')[0],null).getPropertyValue("width");
+    var times = window.setInterval(function(){ 
+      iFrame.contentWindow.postMessage('MessageFromWelcome','*');
+    }, 3000);
+   
+
+    window.addEventListener('message', function(e){
+                    if(event.data){
+                      
+                    }
+                });
+
+    window.addEventListener("unload", function() {
+      console.log("离开")
+      window.clearInterval(times)
+    });
+
+     $('.lead').css("text-align","center")
+     $("body div.content").css("display","flex").css("flex-flow","column").css("align-items","center")
+  </script>
+
+

@@ -1,0 +1,33 @@
+<li class="dropdown" title="<%= group.title %>" >
+  
+   <% if group.title == "Files" %>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">文件<span class="caret"></span></a>
+<% elsif group.title == "Jobs" %>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">工作<span class="caret"></span></a>
+<% elsif group.title == "Clusters" %>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">集群<span class="caret"></span></a>
+<% else %>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">应用交互<span class="caret"></span></a>
+<% end %> 
+   <ul class="dropdown-menu">
+    <% OodAppGroup.groups_for(apps: group.apps, group_by: :subcategory).each_with_index do |g, index| %>
+      <%= content_tag "li", "", class: "divider", role: "separator" if index > 0 %>
+      <%= content_tag "li", g.title, class: "dropdown-header" unless g.title.empty? %>
+      <% g.apps.each do |app| %>
+        <% app.links.each do |link| %>
+          <li>
+            <%=
+              link_to(
+                link.url.to_s,
+                title: link.title,
+                target: link.new_tab? ? "_blank" : nil
+              ) do
+            %>
+              <%= icon_tag(link.icon_uri) %> <%= link.title %>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+</li>
