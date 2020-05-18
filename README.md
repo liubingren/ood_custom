@@ -1,1 +1,9 @@
 # ood_custom
+
+OpenOnDemand_powered_by_RGB-cb3aad5ff5350c7994f250fb334ddcc72e343233ce99eb71fda93beddd76a847.svg和OpenOnDemand_stack_RGB-e9b21db6a659867fbf0ac60241622ebed7f74029c0498f09c72689c024011874.svg:头部和尾部logo
+
+_group.html.erb：导航栏汉化
+
+父页面(ood页面)_welcome.html.erb和子页面(监控k8s)vendors_3.bundle.dll.js：ood嵌入kibana分享的图表
+
+application.html.erb：导航栏添加监控菜单，需要配合路由(config/routes.rb)和控制器(controllers/dashboard_controllers.rb)使用
